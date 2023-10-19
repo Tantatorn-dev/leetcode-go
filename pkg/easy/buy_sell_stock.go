@@ -16,3 +16,22 @@ func maxProfit(prices []int) int {
 
 	return maxDiff
 }
+
+// O(N) solution
+func maxProfit2(prices []int) int {
+	maxDiff := 0
+	minVal := prices[0]
+
+	for i := 0; i < len(prices); i++ {
+		diff := prices[i] - minVal
+		if diff > maxDiff {
+			maxDiff = diff
+		}
+
+		if prices[i] < minVal {
+			minVal = prices[i]
+		}
+	}
+
+	return maxDiff
+}
