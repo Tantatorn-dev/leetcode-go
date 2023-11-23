@@ -49,3 +49,22 @@ func CountList(list *ListNode) int {
 
 	return i
 }
+
+func RemoveElement(head *ListNode, val int) *ListNode {
+	dummy := new(ListNode)
+	dummy.Next = head
+
+	ret := dummy
+
+	for head != nil {
+		if head.Val == val {
+			dummy.Next = head.Next
+			head = head.Next
+		} else {
+			head = head.Next
+			dummy = dummy.Next
+		}
+	}
+
+	return ret.Next
+}
