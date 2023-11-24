@@ -1,6 +1,8 @@
 package common
 
-import "fmt"
+import (
+	"fmt"
+)
 
 type ListNode struct {
 	Val  int
@@ -67,4 +69,40 @@ func RemoveElement(head *ListNode, val int) *ListNode {
 	}
 
 	return ret.Next
+}
+
+func RotateRight(head *ListNode, k int) *ListNode {
+	if head == nil {
+		return nil
+	}
+
+	n := CountList(head)
+
+	if k > n {
+		k %= n
+	}
+
+	ret := head
+
+	for i := 0; i < k; i++ {
+		dummy := new(ListNode)
+		dummy.Next = head
+
+		ret = dummy
+
+		// iterate until very end of the list
+		for head != nil {
+			if head.Next != nil {
+				head = head.Next
+				dummy = dummy.Next
+			} else {
+				dummy.Next = nil
+				ret.Val = head.Val
+				head = ret
+				break
+			}
+		}
+	}
+
+	return ret
 }
