@@ -38,3 +38,21 @@ func maxDepth(root *TreeNode) int {
 
 	return 0
 }
+
+func minDepth(root *TreeNode) int {
+	if root == nil {
+		return 0
+	}
+
+	left := 1 + minDepth(root.Left)
+
+	right := 1 + minDepth(root.Right)
+
+	if left == 1 {
+		return right
+	} else if right == 1 {
+		return left
+	}
+
+	return min(left, right)
+}
