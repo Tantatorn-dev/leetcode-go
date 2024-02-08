@@ -56,3 +56,18 @@ func minDepth(root *TreeNode) int {
 
 	return min(left, right)
 }
+
+func preorderTraversal(root *TreeNode) []int {
+	var ret []int
+
+	if root == nil {
+		return []int{}
+	}
+
+	ret = append(ret, preorderTraversal(root.Left)...)
+	ret = append(ret, preorderTraversal(root.Right)...)
+
+	ret = append([]int{root.Val}, ret...)
+
+	return ret
+}
