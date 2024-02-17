@@ -1,4 +1,4 @@
-package medium
+package linkedlist
 
 import "leetcode-go/pkg/common"
 
