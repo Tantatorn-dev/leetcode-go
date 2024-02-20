@@ -79,3 +79,19 @@ func countNodes(root *TreeNode) int {
 
 	return 1 + countNodes(root.Left) + countNodes(root.Right)
 }
+
+func SearchBST(root *TreeNode, val int) *TreeNode {
+	if root == nil {
+		return nil
+	}
+
+	if root.Val == val {
+		return root
+	}
+
+	if val < root.Val {
+		return SearchBST(root.Left, val)
+	} else {
+		return SearchBST(root.Right, val)
+	}
+}
