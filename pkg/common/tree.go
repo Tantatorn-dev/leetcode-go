@@ -72,6 +72,19 @@ func preorderTraversal(root *TreeNode) []int {
 	return ret
 }
 
+func inorderTraversal(root *TreeNode) []int {
+	if root == nil {
+		return []int{}
+	}
+
+	left := inorderTraversal(root.Left)
+	val := append(left, root.Val)
+	right := inorderTraversal(root.Right)
+	val = append(val, right...)
+
+	return val
+}
+
 func countNodes(root *TreeNode) int {
 	if root == nil {
 		return 0
