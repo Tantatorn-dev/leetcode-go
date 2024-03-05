@@ -1,19 +1,20 @@
 package easy
 
 func findMaxAverage(nums []int, k int) float64 {
-	var maxSum *int
+	sum := 0
+	for _, n := range nums[:k] {
+		sum += n
+	}
 
-	for i := 0; i <= len(nums)-k; i++ {
-		sum := 0
+	maxSum := sum
 
-		for j := i; j < i+k; j++ {
-			sum += nums[j]
-		}
+	for i := 1; i <= len(nums)-k; i++ {
+		sum = sum - nums[i-1] + nums[i+k-1]
 
-		if maxSum == nil || sum > *maxSum {
-			maxSum = &sum
+		if sum > maxSum {
+			maxSum = sum
 		}
 	}
 
-	return float64(*maxSum) / float64(k)
+	return float64(maxSum) / float64(k)
 }
