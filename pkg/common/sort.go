@@ -27,3 +27,25 @@ func QuickSort(arr []int) []int {
 	ret := append(QuickSort(lesser), pivot)
 	return append(ret, QuickSort(greater)...)
 }
+
+func SelectionSort(arr []int) []int {
+	var ret []int
+
+	for i := 0; i < len(arr); i++ {
+
+		min := arr[i]
+		minIndex := i
+
+		for j := i; j < len(arr); j++ {
+			if arr[j] < min {
+				min = arr[j]
+				minIndex = j
+			}
+		}
+
+		arr[i], arr[minIndex] = arr[minIndex], arr[i]
+		ret = append(ret, min)
+	}
+
+	return ret
+}
