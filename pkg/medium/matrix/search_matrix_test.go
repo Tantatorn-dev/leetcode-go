@@ -34,7 +34,7 @@ func Test_searchMatrix(t *testing.T) {
 				},
 				target: 13,
 			},
-			want: true,
+			want: false,
 		},
 	}
 	for _, tt := range tests {

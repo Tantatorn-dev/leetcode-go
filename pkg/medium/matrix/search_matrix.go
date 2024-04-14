@@ -1,33 +1,25 @@
 package matrix
 
 func searchMatrix(matrix [][]int, target int) bool {
-	ydim := len(matrix)
-	xdim := len(matrix[0])
+	m, n := len(matrix[0]), len(matrix)
 
-	midY := ydim / 2
-	midX := xdim / 2
+	low := 0
+	high := m*n - 1
 
-	for {
-		val := matrix[midX][midY]
+	for low <= high {
+		mid := (high + low) / 2
 
-		if target == val {
+		y := mid / m
+		x := mid % m
+
+		if matrix[y][x] == target {
 			return true
-		} else if target > val {
-			if midX+1 < xdim {
-				midX++
-			} else if midY+1 < ydim {
-				midY++
-			} else {
-				break
-			}
+		}
+
+		if matrix[y][x] < target {
+			low = mid + 1
 		} else {
-			if midX-1 >= 0 {
-				midX--
-			} else if midY-1 >= 0 {
-				midY--
-			} else {
-				break
-			}
+			high = mid - 1
 		}
 	}
 
